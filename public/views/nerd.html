@@ -1,0 +1,16 @@
+<!-- public/views/nerd.html -->
+
+<div class="jumbotron text-center">
+    <h1>Nerds and Proud</h1>
+
+    <p ng-repeat="nerd in nerds">
+        {{nerd.name}}
+    </p>
+
+    <form>
+        <input id="name" type="text" ng-model="nerdName" />
+        <button ng-click="newNerd(nerdName)">Add</button>
+    </form>
+
+    <p>{{ tagline }}</p>
+</div>
