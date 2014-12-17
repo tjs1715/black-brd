@@ -1,34 +1,45 @@
 // public/js/controllers/NerdCtrl.js
-angular.module('NerdCtrl', []).controller('NerdController', function($scope, $http) {
+angular.module('NerdCtrl', ['NerdService']).controller('NerdController', function($scope, $http, Nerd) {
 
     $scope.tagline = 'Nothing beats a pocket protector!';
 
     var refreshNerds = function() {
-        $http
-            .get('/api/nerds')
+        Nerd
+            .get()
             .success(function(data, status, headers, config) {
-                // this callback will be called asynchronously
-                // when the response is available
-                //alert("Yay")
                 $scope.nerds = data;
             })
             .error(function(data, status, headers, config) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                alert("Shit");
+                // TODO: Handle gracefully
+                alert("Error: " + JSON.stringify(data));
             });
-    }
 
-    refreshNerds();
+        //$scope.nerds = returnData;
+    };
 
     $scope.newNerd = function(nerdName) {
-       $http
-         .post("/api/nerds", JSON.stringify({name: nerdName}))
+       Nerd
+         .create({name: nerdName})
          .success(function() {
-           refreshNerds();
+            refreshNerds();
          })
          .error(function(data) {
-           //scope.msg = "An error occurred " + data;
+            // TODO: Handle gracefully
+            alert("Error: " + JSON.stringify(data));
          });
      };
+
+    $scope.deleteNerd = function(id) {
+        Nerd
+            .delete(id)
+            .success(function(data) {
+                refreshNerds();
+            })
+            .error(function(data) {
+                // TODO: Handle gracefully
+                alert("Error: " + JSON.stringify(data));
+            })
+    };
+
+    refreshNerds();
 });

@@ -3,9 +3,12 @@
 <div class="jumbotron text-center">
     <h1>Nerds and Proud</h1>
 
-    <p ng-repeat="nerd in nerds">
-        {{nerd.name}}
-    </p>
+    <div ng-repeat="nerd in nerds">
+        <label>
+            <input type="button" value="Delete" ng-click="deleteNerd(nerd._id)">
+            {{nerd.name}}
+        </label>
+    </div>
 
     <form>
         <input id="name" type="text" ng-model="nerdName" />
