@@ -12,11 +12,10 @@ var Nerd = require('./models/nerd');
         // sample api route
         app.get('/api/nerds', function(req, res) {
             // use mongoose to get all nerds in the database
-//            res.send("Get request");
             Nerd.find(function(err, nerds) {
 
                 // if there is an error retrieving, send the error.
-                                // nothing after res.send(err) will execute
+                // nothing after res.send(err) will execute
                 if (err)
                     res.send(err);
 
@@ -30,21 +29,28 @@ var Nerd = require('./models/nerd');
             nerd.name = req.body.name;
 
             nerd.save(function(err) {
-                if(err) {
-                    res.json({
-                        success: false,
-                        message: err
-                    });
-                }
+                if (err)
+                    res.send(err);
 
                 res.json({
-                    success: true,
                     message: 'Nerd created'
                 });
             });
         });
 
         // route to handle delete goes here (app.delete)
+        app.delete('/api/nerds/:nerd_id', function(req, res) {
+            Nerd.remove({
+                _id: req.params.nerd_id
+            }, function(err, todo) {
+                if (err)
+                    res.send(err);
+
+                res.json({
+                    message: 'Nerd removed'
+                });
+            })
+        });
 
         // frontend routes =========================================================
         // route to handle all angular requests
