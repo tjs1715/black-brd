@@ -1,0 +1,28 @@
+{
+   _id: ObjectId("5099803df3f4948bd2f98391"),
+   username: "blackbaud\nicholasno",
+   email: "nicholas.nolasco@blackbaud.com"
+   role: "",
+   completed_date: date,
+   last_accessed_date: date,
+   correctly_answered_questions: [112233,223344,...],
+   incorrectly_answered_questions: [334455,...]
+   submitted_questions: [445566,...]
+ }
+ {
+	_id: ObjectId("112233")
+	question: "Why is the sky blue?",
+	answers: [
+		{
+			text: "refraction of light"
+			explaination: "science!"
+			reference: "http://www.dontbeadummy.com"
+			correct: true
+		},
+		{
+			text: "jebus"
+			correct: false
+		}
+		...
+	]
+ }
