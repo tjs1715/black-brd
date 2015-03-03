@@ -1,0 +1,48 @@
+<section data-ng-controller="QuestionsController">
+    <div class="page-header">
+        <h1>New Question</h1>
+    </div>
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="name">Add Question</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Question" required>
+                    </div>
+
+                    <label class="control-label" for="a">A:</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="a" id="a" class="form-control" placeholder="Answer A" required>
+                    </div>
+
+                    <label class="control-label" for="b">B:</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="b" id="b" class="form-control" placeholder="Answer B" required>
+                    </div>
+
+                    <label class="control-label" for="c">C:</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="c" id="c" class="form-control" placeholder="Answer C" required>
+                    </div>
+
+                    <label class="control-label" for="d">D:</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="d" id="d" class="form-control" placeholder="Answer D" required>
+                    </div>
+
+                    <label class="control-label" for="answer">Correct Answer</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="answer" id="answer" class="form-control" placeholder="A" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
+</section>

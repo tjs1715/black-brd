@@ -10,17 +10,41 @@ var mongoose = require('mongoose'),
  * Question Schema
  */
 var QuestionSchema = new Schema({
-	question: {
+	name: {
 		type: String,
 		default: '',
-		required: 'Question is a required field.',
+		required: 'Please enter question',
 		trim: true
 	},
-	answerList: [String],
-	correctAnswer: {
-		type: Number,
-		default: 0,
-		required: 'One answer must be correct.',
+	a: {
+		type: String,
+		default: '',
+		required: 'Each question must have an A answer',
+		trim: true
+	},
+	b: {
+		type: String,
+		default: '',
+		required: 'Each question must have a B answer',
+		trim: true
+	},
+	c: {
+		type: String,
+		default: '',
+		required: 'Each question must have a C answer',
+		trim: true
+	},
+	d: {
+		type: String,
+		default: '',
+		required: 'Each question must have a D answer',
+		trim: true
+	},
+	answer: {
+		type: String,
+		default: '',
+		required: 'Each question must have a correct answer',
+		//match: ['/^([A-D]$)/', 'You must select A-D'],
 		trim: true
 	},
 	created: {
@@ -30,11 +54,7 @@ var QuestionSchema = new Schema({
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
-	},
-	state: {
-		type: Number,
-		default: 1
-		}
+	}
 });
 
 mongoose.model('Question', QuestionSchema);
