@@ -20,7 +20,7 @@ var QuestionSchema = new Schema({
 	correctAnswer: {
 		type: Number,
 		default: 0,
-		required: 'One answer must be correct.'
+		required: 'One answer must be correct.',
 		trim: true
 	},
 	created: {
