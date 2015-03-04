@@ -5,16 +5,16 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 	function($scope, $stateParams, $location, Authentication, Questions) {
 		$scope.authentication = Authentication;
 
+		//answer array
+		$scope.answers = [];
+
+
 		// Create new Question
-		$scope.create = function() {
+		$scope.addQuestion = function() {
 			// Create new Question object
 			var question = new Questions ({
 				name: this.name,
-				a: this.a,
-				b: this.b,
-				c: this.c,
-				d: this.d,
-				answer: this.answer
+				answers: $scope.answers
 			});
 
 			// Redirect after save
@@ -23,14 +23,26 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 
 				// Clear form fields
 				$scope.name = '';
-				$scope.a = '';
-				$scope.b = '';
-				$scope.c = '';
-				$scope.d = '';
-				$scope.answer = '';
+				$scope.answerKey = '';
+				$scope.answerValue = '';
+				$scope.answerCorrect = false;
+
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+		};
+
+		// Add an answer
+		$scope.addAnswer = function() {
+			$scope.answers.push({
+				key: $scope.answerKey,
+				value: $scope.answerValue,
+				correct: $scope.answerCorrect
+			});
+
+			$scope.answerKey = '';
+			$scope.answerValue = '';
+			$scope.answerCorrect = false;
 		};
 
 		// Remove existing Question

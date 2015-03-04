@@ -3,7 +3,7 @@
         <h1>New Question</h1>
     </div>
     <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+        <form class="form-horizontal" novalidate>
             <fieldset>
                 <div class="form-group">
                     <label class="control-label" for="name">Add Question</label>
@@ -11,33 +11,28 @@
                         <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Question" required>
                     </div>
 
-                    <label class="control-label" for="a">A:</label>
+                    <label class="control-label" for="answers">Add Answers</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="a" id="a" class="form-control" placeholder="Answer A" required>
+                        <input type="text" data-ng-model="answerKey" id="answerKey" class="form-control" placeholder="A" required><br />
+                        <input type="text" data-ng-model="answerValue" id="answerValue" class="form-control" placeholder="I am an incorrect answer." required><br />
+                        <input type="text" data-ng-model="answerCorrect" id="answerCorrect" class="form-control" placeholder="false" required><br />
                     </div>
-
-                    <label class="control-label" for="b">B:</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="b" id="b" class="form-control" placeholder="Answer B" required>
-                    </div>
-
-                    <label class="control-label" for="c">C:</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="c" id="c" class="form-control" placeholder="Answer C" required>
-                    </div>
-
-                    <label class="control-label" for="d">D:</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="d" id="d" class="form-control" placeholder="Answer D" required>
-                    </div>
-
-                    <label class="control-label" for="answer">Correct Answer</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="answer" id="answer" class="form-control" placeholder="A" required>
+                    <div class="form-group">
+                        <button ng-click="addAnswer()" class="btn btn-default">Add answer</button>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-default">
+                  <h4>Current answers:</h4>
+                  <table>
+                    <tr ng-repeat="answer in answers">
+                      <td><b>Key:</b> {{answer.key}} -</td>
+                      <td><b>Value:</b> {{answer.value}} -</td>
+                      <td><b>Correct:</b> {{answer.correct}}</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="form-group">
+                    <button ng-click="addQuestion()" class="btn btn-default">Add question and answers</button>
                 </div>
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>
