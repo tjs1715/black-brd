@@ -7,5 +7,5 @@ angular.module('quiz').factory('Quiz', ['$resource',
 				method: 'PUT'
 			}
 		});
-	}
-]);
+	}]
+);

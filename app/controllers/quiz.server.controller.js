@@ -12,7 +12,9 @@ var mongoose = require('mongoose'),
  * Create a Quiz
  */
 exports.grabQuestion = function(req, res) {
-  Question.find().sort('-created').populate('user', 'displayName').exec(function(err, questions) {
+  //$nin - mongoose operator matches none of values specified in an array
+  //
+  Question.find({_id: {$nin : req.user.questions}}).exec(function(err, questions) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
