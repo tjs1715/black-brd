@@ -88,7 +88,12 @@ var UserSchema = new Schema({
 	},
 	resetPasswordExpires: {
 		type: Date
-	}
+	},
+	/* Track questions answered */
+	questions:[{
+		type: Schema.Types.ObjectId,
+		ref: 'Question'
+	}]
 });
 
 /**
