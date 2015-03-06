@@ -28,6 +28,10 @@ angular.module('dashboard').controller('DashboardController', ['$scope',  'Authe
 				$scope.quizButtonText = 'Continue Quiz';
 			}
 
+			if ($scope.totalAnswered > $scope.totalQuestions) {
+				$scope.totalAnswered = $scope.totalQuestions;
+			}
+
 			$scope.resetQuizProgress = function() {
 				var user = new Users($scope.authentication.user);
 				user.questions.length = 0;
