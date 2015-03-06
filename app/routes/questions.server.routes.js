@@ -6,11 +6,11 @@ module.exports = function(app) {
 
 	// Questions Routes
 	app.route('/questions')
-		.get(questions.list)
+		.get(users.requiresLogin,questions.list)
 		.post(users.requiresLogin, questions.create);
 
 	app.route('/questions/:questionId')
-		.get(questions.read)
+		.get(users.requiresLogin, questions.hasAuthorization,questions.read)
 		.put(users.requiresLogin, questions.hasAuthorization, questions.update)
 		.delete(users.requiresLogin, questions.hasAuthorization, questions.delete);
 
