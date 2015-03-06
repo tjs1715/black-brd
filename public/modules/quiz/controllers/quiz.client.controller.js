@@ -17,7 +17,7 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 				$scope.randomQuestion = questionArray[Math.floor(Math.random() * questionArray.length)];
 
 			if (questionArray.length < 1) {
-					$location.page('/dashboard');
+					$location.path('/dashboard');
 				}
 			$scope.questionCount = questionArray.length;
 			});
@@ -43,7 +43,7 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 			quiz.$update(function(response) {
 				$scope.success = true;
 				//Authentication.user = response;
-				if ($scope.questionCount <= 1){
+				if ($scope.questionCount < 1){
 					$location.path('/dashboard');
 				}
 				else
@@ -51,7 +51,7 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 					$location.path('/answers/' + $scope.randomQuestion._id);
 				}
 			}, function(response) {
-				if ($scope.questionCount <= 1){
+				if ($scope.questionCount < 1){
 					$location.path('/dashboard');
 				}
 				else
