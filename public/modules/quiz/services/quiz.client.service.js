@@ -2,7 +2,7 @@
 
 angular.module('quiz').factory('Quiz', ['$resource',
 	function($resource) {
-		return $resource('quiz', {}, {
+		return $resource('quiz/:questionId', {}, {
 			update: {
 				method: 'PUT'
 			}

@@ -30,6 +30,7 @@ exports.create = function(req, res) {
  * Show the current Question
  */
 exports.read = function(req, res) {
+	console.log('qread');
 	res.jsonp(req.question);
 };
 

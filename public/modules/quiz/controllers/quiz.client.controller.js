@@ -27,16 +27,15 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 			// is radio button selected correct?
 			//
 			var isCorrect = false;
-			var answerKey = '';
+			var answerKey = 'A';
 			var rdoAnswers = document.getElementsByName('answers');
 			for (var i = 0, length = rdoAnswers.length; i < length; i++) {
-				if (rdoAnswers[i].checked === true){answerKey = rdoAnswers[i].key;}
-
 				if ((rdoAnswers[i].checked === true) && (rdoAnswers[i].value === true)) {
 					isCorrect = true;
 					break;
 				}
 			}
+      console.log("aNSWER: " + answerKey);
 
 			$http.put('/quiz',{
 													currentQuestion: $scope.randomQuestion._id,

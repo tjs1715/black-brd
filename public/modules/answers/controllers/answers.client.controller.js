@@ -1,13 +1,18 @@
 'use strict';
 
-angular.module('answers').controller('AnswersController', ['$scope','$stateParams','$location','Questions',
-	function($scope,$stateParams,$location,Questions) {
-		var ques = Questions.get({questionId: $stateParams.questionId});
-		ques.$promise.then(function(q){$scope.question = q;}, function(e){console.log(JSON.stringify(e));});
+angular.module('answers').controller('AnswersController', ['$scope','$stateParams','$location','$http','Authentication','Quiz',
+	function($scope,$stateParams,$location,$http,Authentication,Quiz) {
+	  var ques = Quiz.get({questionId:$stateParams.questionId});
+
+		ques.$promise.then(
+				function(res){
+					$scope.question = res;
+					$scope.question.answerKey = Authentication.user.questions[0].answerKey;
+			},
+			function(error){console.log(error);});
 
 		$scope.continue = function(){
 			$location.path('/quiz');
-			$scope.$apply();
 		};
 	}
 ]);

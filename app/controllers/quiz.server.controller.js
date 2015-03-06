@@ -8,14 +8,19 @@ var mongoose = require('mongoose'),
   Question = mongoose.model('Question'),
   _ = require('lodash');
 
+exports.read = function(req, res) {
+    res.json(req.question);
+};
+
+
 /**
  * Create a Quiz
  */
 
-
 exports.grabQuestion = function(req, res) {
   // pull out array of ids
   //
+  console.log('grab question');
   var arrLength = req.user.questions.length;
   var questionIds = [];
   for (var i = 0; i < arrLength; i++) {
@@ -47,4 +52,18 @@ exports.answerQuestion = function(req, res) {
   req.user.questions.push(req.body);
   req.user.save();
 
+};
+
+exports.answeredQuestionById = function(req,res,next,id){
+   Question.findById(id,function(err,question){
+    if(!err){
+      req.question = question;
+    }else
+    {
+      console.log(err);
+    }
+
+  });
+
+  next();
 };
