@@ -90,10 +90,11 @@ var UserSchema = new Schema({
 		type: Date
 	},
 	/* Track questions answered */
-	questions:[{
-		type: Schema.Types.ObjectId,
-		ref: 'Question'
-	}]
+	questions:[]
+	//{
+	//	type: Schema.Types.ObjectId,
+	//	ref: 'Question'
+	//}]
 });
 
 /**

@@ -9,7 +9,7 @@
         <table>
     			<tr ng-repeat="answer in randomQuestion.answers">
     				<td>
-              <input type="radio" name="answers" ng-model="answers">
+							<input type="radio" ng-model="answers" id="answers" name = "answers" value="{{answer.correct}}" required>
             </td>
             <td class="rdo-answer">{{answer.key}}.</td>
     				<td class="rdo-answer">{{answer.value}}</td>

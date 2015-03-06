@@ -11,10 +11,20 @@ var mongoose = require('mongoose'),
 /**
  * Create a Quiz
  */
+
+
 exports.grabQuestion = function(req, res) {
+  // pull out array of ids
+  //
+  var arrLength = req.user.questions.length;
+  var questionIds = [];
+  for (var i = 0; i < arrLength; i++) {
+      questionIds.push(req.user.questions[i].currentQuestion);
+  }
+
   //$nin - mongoose operator matches none of values specified in an array
   //
-  Question.find({_id: {$nin : req.user.questions}}).exec(function(err, questions) {
+  Question.find({_id: {$nin : questionIds}}).exec(function(err, questions) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -33,30 +43,8 @@ exports.answerQuestion = function(req, res) {
   var user = req.user;
 
   // add to list of answerwed questions
-  console.log(req.body);
-
-  req.user.questions.push(req.body.currentQuestion);
+//
+  req.user.questions.push(req.body);
   req.user.save();
-  console.log(req.user);
+
 };
-  // get the question id and what answer key was selected from client side
-  //
-
-  // add data to user doc
-  //
-
-	//question = _.extend(question , req.body);
-
-
-  // save the data to the user doc
-  //
-/*  user.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(question);
-		}
-	});
-  */
