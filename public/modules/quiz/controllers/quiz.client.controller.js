@@ -21,32 +21,22 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 		$scope.answerQuestion = function() {
 			// is radio button selected correct?
 			//
-			//var correctlyAnswered = ();
+			var isCorrect = false;
+			var rdoAnswers = document.getElementsByName('answers');
+			for (var i = 0, length = rdoAnswers.length; i < length; i++) {
+				if (rdoAnswers[i].checked && rdoAnswers[i].value) {
+					isCorrect = true;
+					break;
+				}
+			}
 
-
-			// update existing user object with new question answered.
-			//
-
-			//var question = $scope.question;
-
-			// the $update does a put, basically the line below.  TODO: not working
-			$http.put('/quiz',{currentQuestion: $scope.randomQuestion._id});
+			$http.put('/quiz',{
+													currentQuestion: $scope.randomQuestion._id,
+													correct: isCorrect
+												});
 			//
 			//var quiz = new Quiz();
 			//quiz.$update({currentQuestion: $scope.randomQuestion});
-
-
-
-
-
-
-		//	var quiz = $scope.quiz;
-
-		//	Quiz.$update(function() {
-				//$location.path('/');
-		//	}, function(errorResponse) {
-		//		$scope.error = errorResponse.data.message;
-		//	});
 		};
 	}
 ]);
