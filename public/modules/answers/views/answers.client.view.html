@@ -3,6 +3,8 @@
 		<h1>Answer</h1>
 	</div>
 	<div class="form-group">
+		<form class="form-horizontal" novalidate>
+			<fieldset>
   	<h2 data-ng-bind="question.name"></h2>
  			<table>
 				<tr ng-repeat="answer in question.answers">
@@ -17,7 +19,14 @@
 					</span>
 				</td>
 				</tr>
+				<tr>
+				<td colspan="3">
+					<button ng-click="continue()" class="btn btn-primary">Continue</button>
+				</td>
+			</tr>
 			</table>
+		</fieldset>
+	</form>
 			<p>You answered:<span data-ng-bind="question.answerKey"></span></p>
 
  	</div>
