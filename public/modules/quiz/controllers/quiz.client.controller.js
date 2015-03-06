@@ -29,7 +29,7 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 			var isCorrect = false;
 			var rdoAnswers = document.getElementsByName('answers');
 			for (var i = 0, length = rdoAnswers.length; i < length; i++) {
-				if (rdoAnswers[i].checked && rdoAnswers[i].value) {
+				if ((rdoAnswers[i].checked === true) && (rdoAnswers[i].value === true)) {
 					isCorrect = true;
 					break;
 				}
