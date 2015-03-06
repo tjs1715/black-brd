@@ -34,6 +34,7 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 													currentQuestion: $scope.randomQuestion._id,
 													correct: isCorrect
 												});
+			$location.path('/answers/' + $scope.randomQuestion._id);
 			//
 			//var quiz = new Quiz();
 			//quiz.$update({currentQuestion: $scope.randomQuestion});
