@@ -2,9 +2,22 @@
 	<div class="row">
 		<h3>Quiz Progress</h3>
 		<h4>You have {{totalQuestions - totalAnswered}} of {{totalQuestions}} questions remaining.</h4>
+		<progressbar class="progress-striped active" max="100" value="(totalAnswered * 100) / totalQuestions" type="warning"></progressbar>
 		<p>
 			<a class="btn btn-primary btn-lg" href="/#!/quiz" ng-show="quizButtonText.length > 0">{{quizButtonText}}</a>
+			<div ng-show="totalQuestions - totalAnswered < 1">
+				<h2>Congratulations!  You have finished the quiz and have learned many joyful things.</h2>
+				<h4>Your final score is: {{correctAnswers}} out of {{totalQuestions}} or {{(correctAnswers / totalQuestions) * 100}}%.</h4>
+			</div>
 		</p>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div ng-show="totalAnswered > 0">
+			<h5>Don't press reset unless you mean it...</h5>
+			<a class="btn btn-primary" href="/#!/quiz" ng-click="resetQuizProgress()">Reset Quiz</a>
+		</div>
 	</div>
 </div>
 </section>

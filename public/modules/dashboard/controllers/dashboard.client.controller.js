@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('dashboard').controller('DashboardController', ['$scope',  'Authentication', 'Questions',
-	function($scope, Authentication, Questions) {
+angular.module('dashboard').controller('DashboardController', ['$scope',  'Authentication', 'Questions', 'Users',
+	function($scope, Authentication, Questions, Users) {
 		$scope.authentication = Authentication;
 
 		$scope.questions = Questions.query();
@@ -28,6 +28,21 @@ angular.module('dashboard').controller('DashboardController', ['$scope',  'Authe
 				$scope.quizButtonText = 'Continue Quiz';
 			}
 
+			if ($scope.totalAnswered > $scope.totalQuestions) {
+				$scope.totalAnswered = $scope.totalQuestions;
+			}
+
+			$scope.resetQuizProgress = function() {
+				var user = new Users($scope.authentication.user);
+				user.questions.length = 0;
+				user.$update(function(response) {
+					$scope.success = true;
+					Authentication.user = response;
+				}, function(response) {
+					$scope.error = response.data.message;
+				});
+
+			};
 		});
 
 

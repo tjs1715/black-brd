@@ -15,7 +15,12 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 
 			$scope.questions.$promise.then(function(questionArray){
 				$scope.randomQuestion = questionArray[Math.floor(Math.random() * questionArray.length)];
+
+				if (questionArray.length < 1) {
+					$location.path('dashboard');
+				}
 			});
+
 		};
 
 		$scope.answerQuestion = function() {
@@ -25,8 +30,9 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 			var answerKey = '';
 			var rdoAnswers = document.getElementsByName('answers');
 			for (var i = 0, length = rdoAnswers.length; i < length; i++) {
-				if (rdoAnswers[i].checked){answerKey = rdoAnswers[i].key;}
-				if (rdoAnswers[i].checked && rdoAnswers[i].value) {
+
+				if (rdoAnswers[i].checked === true){answerKey = rdoAnswers[i].key;}
+				if ((rdoAnswers[i].checked === true) && (rdoAnswers[i].value === true)) {
 					isCorrect = true;
 					break;
 				}

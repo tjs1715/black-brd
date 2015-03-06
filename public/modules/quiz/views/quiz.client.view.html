@@ -14,10 +14,12 @@
             <td class="rdo-answer">{{answer.key}}.</td>
     				<td class="rdo-answer">{{answer.value}}</td>
     			</tr>
+					<tr>
+						<td colspan="3">
+							<button ng-click="answerQuestion()" class="btn btn-primary">Submit</button>
+						</td>
+					</tr>
     		</table>
-        <div class="form-group">
-            <button ng-click="answerQuestion()" class="btn btn-default">Submit</button>
-        </div>
       </fieldset>
     </form>
   </div>
