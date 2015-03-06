@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://TestUser:adminadmin_2@ds027758.mongolab.com:27758/meantestdb',
+	db: 'mongodb://localhost/OTGDb',
 	app: {
 		title: 'OWASP Quiz - Development Environment'
 	},

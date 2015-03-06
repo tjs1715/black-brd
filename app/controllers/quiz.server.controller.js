@@ -21,7 +21,6 @@ exports.grabQuestion = function(req, res) {
   for (var i = 0; i < arrLength; i++) {
       questionIds.push(req.user.questions[i].currentQuestion);
   }
-
   //$nin - mongoose operator matches none of values specified in an array
   //
   Question.find({_id: {$nin : questionIds}}).exec(function(err, questions) {
@@ -35,16 +34,37 @@ exports.grabQuestion = function(req, res) {
   });
 };
 
+exports.list = function(req, res) {
+	Question.find().sort('-created').populate('user', 'displayName').exec(function(err, questions) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(questions);
+		}
+	});
+};
+
 /**
  * Show the current Quiz
  */
 exports.answerQuestion = function(req, res) {
   var question = req.question ;
   var user = req.user;
-
+console.log(req.body);
   // add to list of answerwed questions
 //
   req.user.questions.push(req.body);
-  req.user.save();
+  req.user.save(function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(user);
+    }
+  });
+
 
 };

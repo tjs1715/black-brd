@@ -3,6 +3,7 @@
 module.exports = function(app) {
 	var users = require('../../app/controllers/users.server.controller');
 	var quiz = require('../../app/controllers/quiz.server.controller');
+	//var questions = require('../../app/controllers/questions.server.controller');
 
 	//Quiz route
 	//
