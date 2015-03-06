@@ -31,6 +31,7 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 
 			// the $update does a put, basically the line below.  TODO: not working
 			$http.put('/quiz',{currentQuestion: $scope.randomQuestion._id});
+			$location.path('/answers/' + $scope.randomQuestion._id);
 			//
 			//var quiz = new Quiz();
 			//quiz.$update({currentQuestion: $scope.randomQuestion});
