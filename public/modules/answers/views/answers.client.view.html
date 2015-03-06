@@ -7,16 +7,18 @@
  			<table>
 				<tr ng-repeat="answer in question.answers">
   			<td>
-  				<span	ng-class="{correct-answer-green:answer.correct,incorrect-answer-red:!answer.correct }">
-						{{answer.key}}
+  				<span	ng-class="{green:answer.correct,red:!answer.correct }">
+						{{answer.key}}.
   				</span>
 				</td>
 				<td>
-					<span	ng-class="{correct-answer-green:answer.correct,incorrect-answer-red:!answer.correct }">
+					<span	ng-class="{green:answer.correct,red:!answer.correct }">
 						{{answer.value}}
 					</span>
 				</td>
 				</tr>
 			</table>
+			<p>You answered:<span data-ng-bind="question.answerKey"></span></p>
+
  	</div>
 </section>

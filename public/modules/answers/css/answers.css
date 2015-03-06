@@ -13,11 +13,11 @@
 	position: absolute;
 }
 
-.correct-answer-green{
-  background-color:green;
+.green{
+  color:green;
 }
 
-.incorrect-answer-red{
-  background-color:red;
+.red{
+  color:red;
 
 }

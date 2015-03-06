@@ -22,8 +22,10 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 			// is radio button selected correct?
 			//
 			var isCorrect = false;
+			var answerKey = '';
 			var rdoAnswers = document.getElementsByName('answers');
 			for (var i = 0, length = rdoAnswers.length; i < length; i++) {
+				if (rdoAnswers[i].checked){answerKey = rdoAnswers[i].key;}
 				if (rdoAnswers[i].checked && rdoAnswers[i].value) {
 					isCorrect = true;
 					break;
@@ -32,7 +34,8 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 
 			$http.put('/quiz',{
 													currentQuestion: $scope.randomQuestion._id,
-													correct: isCorrect
+													correct: isCorrect,
+													answerKey: answerKey
 												});
 			$location.path('/answers/' + $scope.randomQuestion._id);
 			//
