@@ -2,6 +2,7 @@
 	<div class="row">
 		<h3>Quiz Progress</h3>
 		<h4>You have {{totalQuestions - totalAnswered}} of {{totalQuestions}} questions remaining.</h4>
+		<progressbar class="progress-striped active" max="100" value="(totalAnswered * 100) / totalQuestions" type="warning"></progressbar>
 		<p>
 			<a class="btn btn-primary btn-lg" href="/#!/quiz" ng-show="quizButtonText.length > 0">{{quizButtonText}}</a>
 			<div ng-show="totalQuestions - totalAnswered < 1">
