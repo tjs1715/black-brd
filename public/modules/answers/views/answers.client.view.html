@@ -1,3 +1,22 @@
 <section data-ng-controller="AnswersController">
-	<p data-ng-bind="user"></p>
+	<div class="page-header">
+		<h1>Answer</h1>
+	</div>
+	<div class="form-group">
+  	<h2 data-ng-bind="question.name"></h2>
+ 			<table>
+				<tr ng-repeat="answer in question.answers">
+  			<td>
+  				<span	ng-class="{correct-answer-green:answer.correct,incorrect-answer-red:!answer.correct }">
+						{{answer.key}}
+  				</span>
+				</td>
+				<td>
+					<span	ng-class="{correct-answer-green:answer.correct,incorrect-answer-red:!answer.correct }">
+						{{answer.value}}
+					</span>
+				</td>
+				</tr>
+			</table>
+ 	</div>
 </section>
