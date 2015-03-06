@@ -2,6 +2,7 @@
 
 module.exports = {
 	db: 'mongodb://localhost/OTGDb',
+
 	app: {
 		title: 'OWASP Quiz - Development Environment'
 	},
