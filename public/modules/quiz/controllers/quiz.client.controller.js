@@ -16,7 +16,7 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 			$scope.questions.$promise.then(function(questionArray){
 				$scope.randomQuestion = questionArray[Math.floor(Math.random() * questionArray.length)];
 
-				if (questionArray.length < 1) {
+			if (questionArray.length < 1) {
 					$location.path('dashboard');
 				}
 			});
