@@ -8,5 +8,5 @@ module.exports = function(app) {
 	//
 	app.route('/quiz')
 		.get(quiz.grabQuestion)
-		.post(users.requiresLogin, quiz.answerQuestion);
+		.put(users.requiresLogin, quiz.answerQuestion);
 };

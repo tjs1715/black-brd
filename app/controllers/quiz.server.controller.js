@@ -29,5 +29,34 @@ exports.grabQuestion = function(req, res) {
  * Show the current Quiz
  */
 exports.answerQuestion = function(req, res) {
+  var question = req.question ;
+  var user = req.user;
 
+  // add to list of answerwed questions
+  console.log(req.body);
+
+  req.user.questions.push(req.body.currentQuestion);
+  req.user.save();
+  console.log(req.user);
 };
+  // get the question id and what answer key was selected from client side
+  //
+
+  // add data to user doc
+  //
+
+	//question = _.extend(question , req.body);
+
+
+  // save the data to the user doc
+  //
+/*  user.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(question);
+		}
+	});
+  */
