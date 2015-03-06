@@ -1,7 +1,9 @@
 <section data-ng-controller="DashboardController">
 	<div class="row">
+		<h3>Quiz Progress</h3>
+		<h4>You have {{totalQuestions - totalAnswered}} of {{totalQuestions}} questions remaining.</h4>
 		<p>
-			<a class="btn btn-primary btn-lg" href="/#!/quiz">Start Quiz</a>
+			<a class="btn btn-primary btn-lg" href="/#!/quiz" ng-show="quizButtonText.length > 0">{{quizButtonText}}</a>
 		</p>
 	</div>
 </div>
