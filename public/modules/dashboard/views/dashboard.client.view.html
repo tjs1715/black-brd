@@ -4,7 +4,13 @@
 		<h4>You have {{totalQuestions - totalAnswered}} of {{totalQuestions}} questions remaining.</h4>
 		<p>
 			<a class="btn btn-primary btn-lg" href="/#!/quiz" ng-show="quizButtonText.length > 0">{{quizButtonText}}</a>
+			<h1 ng-show="totalQuestions - totalAnswered < 1">Congratulations!  You have finished the quiz and have learned many joyful things.</h1>
 		</p>
+		<br>
+		<br>
+		<br>
+		<br>
+		<a class="btn btn-primary btn-lg" href="/#!/quiz" ng-show="totalAnswered > 0" ng-click="resetQuizProgress()">Reset Quiz</a>
 	</div>
 </div>
 </section>
