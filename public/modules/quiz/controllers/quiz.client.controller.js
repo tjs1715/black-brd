@@ -30,8 +30,8 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 			var answerKey = '';
 			var rdoAnswers = document.getElementsByName('answers');
 			for (var i = 0, length = rdoAnswers.length; i < length; i++) {
-
 				if (rdoAnswers[i].checked === true){answerKey = rdoAnswers[i].key;}
+
 				if ((rdoAnswers[i].checked === true) && (rdoAnswers[i].value === true)) {
 					isCorrect = true;
 					break;
