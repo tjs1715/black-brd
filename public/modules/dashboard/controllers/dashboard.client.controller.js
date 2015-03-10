@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('dashboard').controller('DashboardController', ['$scope', '$location', '$timeout', 'Authentication', 'Questions', 'Users', 'Quiz',
-	function($scope, $location, $timeout, Authentication, Questions, Users, Quiz) {
+angular.module('dashboard').controller('DashboardController', ['$scope', 'Authentication', 'Questions', 'Users',
+	function($scope, Authentication, Questions, Users) {
 
 		$scope.authentication = Authentication;
 

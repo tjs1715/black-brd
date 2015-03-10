@@ -6,7 +6,7 @@
 
 
 angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '$location', '$http', 'Quiz', 'Questions',
-	function($scope, $stateParams, $location, $http, Quiz, Questions, Users, Authentication) {
+	function($scope, $stateParams, $location, $http, Quiz, Questions) {
 
 		$scope.questionCount = 0;
 		// Present question user has not answered
