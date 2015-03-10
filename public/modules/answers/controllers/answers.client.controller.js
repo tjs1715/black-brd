@@ -10,9 +10,11 @@ angular.module('answers').controller('AnswersController', ['$scope','$stateParam
 					$scope.question.answerKey = Authentication.user.questions[0].answerKey;
 			},
 			function(error){console.log(error);});
-
+			//location.reload();
 		$scope.continue = function(){
+
 			$location.path('/quiz');
+
 		};
 
 	}

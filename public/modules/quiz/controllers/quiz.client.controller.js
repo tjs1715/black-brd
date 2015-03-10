@@ -6,7 +6,7 @@
 
 
 angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '$location', '$http', 'Quiz', 'Questions',
-	function($scope, $stateParams, $location, $http, Quiz, Questions) {
+	function($scope, $stateParams, $location, $http, Quiz, Questions, Users, Authentication) {
 
 		$scope.questionCount = 0;
 		// Present question user has not answered
@@ -31,19 +31,20 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 			var answerKey = 'A';
 			var rdoAnswers = document.getElementsByName('answers');
 			for (var i = 0, length = rdoAnswers.length; i < length; i++) {
-				if ((rdoAnswers[i].checked === true) && (rdoAnswers[i].value === true)) {
+				if ((rdoAnswers[i].checked === true) && (rdoAnswers[i].value === 'true')) {
 					isCorrect = true;
 					break;
 				}
 			}
 
 			var quiz = new Quiz({currentQuestion: $scope.randomQuestion._id,correct: isCorrect,	answerKey: answerKey});
-			//quiz.body = {currentQuestion: $scope.randomQuestion._id,correct: isCorrect,	answerKey: answerKey};
 
 			quiz.$update(function(response) {
 				$scope.success = true;
+
 				//Authentication.user = response;
 				if ($scope.questionCount < 1){
+					$scope.$apply();
 					$location.path('/dashboard');
 				}
 				else
@@ -60,20 +61,6 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 				}
 			});
 
-
-/*	$location.path('/answers/' + $scope.randomQuestion._id);
-			$http.put('/quiz',{
-													currentQuestion: $scope.randomQuestion._id,
-													correct: isCorrect,
-													answerKey: answerKey
-												}).success(function(data,status,headers,config) {
-													console.log('gggg');
-													$location.path('/answers/' + $scope.randomQuestion._id);
-												});
-*/
-			//
-			//var quiz = new Quiz();
-			//quiz.$update({currentQuestion: $scope.randomQuestion});
 		};
 	}
 ]);

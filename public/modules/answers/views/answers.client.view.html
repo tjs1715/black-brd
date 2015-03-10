@@ -8,24 +8,26 @@
   	<h2 data-ng-bind="question.name"></h2>
  			<table>
 				<tr ng-repeat="answer in question.answers">
-  			<td>
+  			<td class="rdo-answer">
   				<span	ng-class="{green:answer.correct,red:!answer.correct }">
 						{{answer.key}}.
   				</span>
 				</td>
 				<td>
-					<span	ng-class="{green:answer.correct,red:!answer.correct }">
+					<span	ng-class="{green:answer.correct,red:!answer.correct }" class="rdo-answer">
 						{{answer.value}}
 					</span>
 				</td>
 				</tr>
 				<tr>
-					<td>
-					<p>You answered: <span data-ng-bind="question.answerKey" style="font-weight:bold"></span></p>
+					<td colspan="2">
+						<!--		<p>You answered:
+						<span data-ng-bind="question.answerKey" style="font-weight:bold"></span>
+					</p>-->
 				</td>
 				</tr>
 				<tr>
-				<td colspan="3">
+				<td colspan="2">
 					<a class="btn btn-primary btn-lg" href="/#!/quiz">Continue</a>
 				</td>
 			</tr>
