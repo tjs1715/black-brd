@@ -20,7 +20,13 @@ angular.module('answers').controller('AnswersController', ['$scope','$stateParam
 					$scope.question = res;
 					// TODO: this needs to pull the actual question id.
 					//
-					$scope.question.answerKey = user.questions[0].answerKey;
+					for (var i = 0; i < user.questions.length; i++) {
+						if (user.questions[i].currentQuestion === $stateParams.questionId) {
+							$scope.question.answerKey = user.questions[i].answerKey;
+							break;
+						}
+					}
+
 			},
 			function(error){console.log(error);});
 			//location.reload();

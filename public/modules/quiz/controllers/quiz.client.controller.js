@@ -37,8 +37,8 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 			for (var i = 0, length = rdoAnswers.length; i < length; i++) {
 				if (rdoAnswers[i].checked === true)  {
 					var answerData = JSON.parse(rdoAnswers[i].value);
-					answerKey = answerData.key
-					if (answerData.correct === 'true') {
+					answerKey = answerData.key;
+					if (answerData.correct === true) {
 						isCorrect = true;
 					}
 

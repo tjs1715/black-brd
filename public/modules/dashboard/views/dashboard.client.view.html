@@ -7,7 +7,7 @@
 			<a class="btn btn-primary btn-lg" href="/#!/quiz" ng-show="quizButtonText.length > 0">{{quizButtonText}}</a>
 			<div ng-show="totalQuestionsObj.totalQuestions - totalAnsObj.totalAnswered < 1">
 				<h2>Congratulations!  You have finished the quiz and have learned many joyful things.</h2>
-				<h4>Your final score is: {{correctAnswersObj.correctAnswers}} out of {{totalQuestionsObj.totalQuestions}} or {{(correctAnswersObj.correctAnswers / totalQuestionsObj.totalQuestions) * 100}}%.</h4>
+				<h4>Your final score is: {{correctAnswersObj.correctAnswers}} out of {{totalQuestionsObj.totalQuestions}} or {{Math.round((correctAnswersObj.correctAnswers / totalQuestionsObj.totalQuestions) * 100)}}%.</h4>
 			</div>
 		</p>
 		<br>

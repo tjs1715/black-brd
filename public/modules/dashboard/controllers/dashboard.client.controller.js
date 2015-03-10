@@ -5,6 +5,10 @@ angular.module('dashboard').controller('DashboardController', ['$scope', 'Authen
 
 		$scope.authentication = Authentication;
 
+		// inject Math so we can use it in our bindings
+		//
+		$scope.Math = window.Math;
+
 	//	$scope.$watch('$scope.totalQuestionsObj', function(newVal, oldVal){
 		//		console.log('changed');
 	//	}, true);
