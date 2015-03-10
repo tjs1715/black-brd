@@ -12,14 +12,14 @@ angular.module('dashboard').controller('DashboardController', ['$scope', 'Authen
 		$scope.loadDashboard = function() {
 			// save user to ensure most up to date stats
 			//
-			var user = new Users($scope.user);
+			/*var user = new Users($scope.user);
 			user.$update(function(response) {
 				$scope.success = true;
 				Authentication.user = response;
 			}, function(response) {
 				$scope.error = response.data.message;
 			});
-
+*/
 
 			$scope.questions = Questions.query();
 			var totalCorrect = 0;

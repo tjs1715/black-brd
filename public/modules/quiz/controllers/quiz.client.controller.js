@@ -24,17 +24,27 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 
 		};
 
+		$scope.setAnswerKey = function($event) {
+			$scope.answerKey = $event.target.parent().next().value;
+		};
+
 		$scope.answerQuestion = function() {
 			// is radio button selected correct?
 			//
 			var isCorrect = false;
-			var answerKey = 'A';
+			var answerKey = 'Z';
 			var rdoAnswers = document.getElementsByName('answers');
 			for (var i = 0, length = rdoAnswers.length; i < length; i++) {
-				if ((rdoAnswers[i].checked === true) && (rdoAnswers[i].value === 'true')) {
-					isCorrect = true;
+				if (rdoAnswers[i].checked === true)  {
+					var answerData = JSON.parse(rdoAnswers[i].value);
+					answerKey = answerData.key
+					if (answerData.correct === 'true') {
+						isCorrect = true;
+					}
+
 					break;
 				}
+
 			}
 
 			var quiz = new Quiz({currentQuestion: $scope.randomQuestion._id,correct: isCorrect,	answerKey: answerKey});
