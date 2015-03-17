@@ -8,33 +8,41 @@ angular.module('answers').controller('AnswersController', ['$scope','$stateParam
 		user.$update(function(response) {
 			$scope.success = true;
 			Authentication.user = response;
+
+			// map keys
+			var answeredQuestions = [];
+			for (var i = 0; user.questions.length > i; i ++) {
+				answeredQuestions[i] = user.questions[i].currentQuestion;
+			}
+			var answeredQuestionId = answeredQuestions.indexOf($stateParams.questionId);
+
+			if (answeredQuestionId > -1)
+			{
+				var ques = Quiz.get({questionId:$stateParams.questionId});
+
+				ques.$promise.then(
+						function(res){
+							$scope.question = res;
+							$scope.question.answerKey = user.questions[answeredQuestionId].answerKey;
+					},
+					function(error){console.log(error);});
+			}
+			else {
+				$location.path('/quiz');
+			}
+
 		}, function(response) {
 			$scope.error = response.data.message;
+			$location.path('/signin');
 		});
 
 
-		var ques = Quiz.get({questionId:$stateParams.questionId});
+				//location.reload();
+			$scope.continue = function(){
 
-		ques.$promise.then(
-				function(res){
-					$scope.question = res;
-					// TODO: this needs to pull the actual question id.
-					//
-					for (var i = 0; i < user.questions.length; i++) {
-						if (user.questions[i].currentQuestion === $stateParams.questionId) {
-							$scope.question.answerKey = user.questions[i].answerKey;
-							break;
-						}
-					}
+				$location.path('/quiz');
 
-			},
-			function(error){console.log(error);});
-			//location.reload();
-		$scope.continue = function(){
-
-			$location.path('/quiz');
-
-		};
+			};
 
 	}
 ]);
