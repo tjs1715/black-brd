@@ -5,19 +5,40 @@
  */
 var passport = require('passport'),
   wsfedsaml2 = require('passport-wsfed-saml2').Strategy,
-	User = require('mongoose').model('User');
+  url = require('url'),
+	config = require('../config'),
+	users = require('../../app/controllers/users.server.controller');
 
 module.exports = function(){
     passport.use(new wsfedsaml2(
     {
       path: '/login/callback',
-      realm: 'urn:node:app',
+      realm: 'https://ncservicetest.blackbaud.com/login/callback',
+      wReply: 'https://ncservicetest.blackbaud.com/login/callback',
       homeRealm: '', // optionally specify an identity provider to avoid showing the idp selector
-      identityProviderUrl: 'https://bbauth-signin-cdev.blackbaudhosting.com/wsfederation/metadata',
-      cert: 'MIIDFjCCAf6gAwIBAgIQDRRprj9lv5RBvaQdlFltDzANBgkqhkiG9w0BAQUFADAvMS0wKwYDVQQDEyRhdXRoMTAtZGV2LmFjY2Vzc2NvbnRyb2wud2luZG93cy5uZXQwHhcNMTEwOTIxMDMzMjMyWhcNMTIwOTIwMDkzMjMyWjAvMS0wKwYDVQQDEyRhdXRoMTAtZGV2LmFjY2Vzc2NvbnRyb2wud2luZG93cy5uZXQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCEIAEB/KKT3ehNMy2MQEyJIQ14CnZ8DC2FZgL5Gw3UBSdRb9JinK/gw7yOQtwKfJUqeoZaUSAAdcdbgqwVxOnMBfWiYX7DGlEznSfqYVnjOWjqqjpoe0h6RaOkdWovDtoidmqVV1tWRJFjkj895clPxkLpnqqcycfXtSdZen0SroGyirD2mhMc9ccLbJ3zRnBNjlvpo5zow1zYows09tNC2EhGROL/OS4JNRQnJRICZC+WkA7Igf3xb4btJOzIPYhFiqCGrd/81CHmAyEuNzyc60I5yomDQfZ91Eb5Uk3F7mlfAlYB2aZwDwldLSOlVE8G1E5xFexF/5KyPC4ShNodAgMBAAGjLjAsMAsGA1UdDwQEAwIE8DAdBgNVHQ4EFgQUyYfx/r0czsPgTzitqey+fGMQpkcwDQYJKoZIhvcNAQEFBQADggEBAB5dgQlM3tKS+/cjlvMCPjZH0Iqo/Wxecri3YWi2iVziZ/TQ3dSV+J/iTyduN7rJmFQzTsNERcsgyAwblwnEKXXvlWo8G/+VDIMh3zVPNQFKns5WPkfkhoSVlnZPTQ8zdXAcWgDXbCgvdqIPozdgL+4l0W0XVL1ugA4/hmMXh4TyNd9Qj7MWvlmwVjevpSqN4wG735jAZFHb/L/vvc91uKqP+JvLNj8tPFVxatzi56X1V8jBM61Hx1Z9D0RCDjtmcQVysVEylW9O6mNy6ZrhLm0q5yecWudfBbTKDqRoCHQRjrMU2c5q/ZFDtgjLim7FaNxFbgTyjeRCPclEhfemYVg='
+      identityProviderUrl: 'http://signin.blackbaud.com/wsfederation/action',
+      identityMetadata: 'http://signin.blackbaud.com/wsfederation/metadata',
+      cert: 'MIIDNzCCAh+gAwIBAgIQxYTPfpRWiJ1Lva4fkHQerTANBgkqhkiG9w0BAQ0FADAoMSYwJAYDVQQDEx1CbGFja2JhdWQgQXV0aGVudGljYXRpb24gMjAyMDAeFw0wMDAxMDEwNDAwMDBaFw0yMDAxMDEwNDAwMDBaMCgxJjAkBgNVBAMTHUJsYWNrYmF1ZCBBdXRoZW50aWNhdGlvbiAyMDIwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAldfhPNUa/R5rxOMPDhmL1+dkB0J42xOnFxojjdQnCEnR2HEZAnnbKTgPck8th7U35+PxKNwNPgxFIe4dEgfYY9fIzBv026NPgv62ViO9Yeuf4+2H6OXxzKKHyzxYn3t8LN4zlhoUvbApIYYUBCdd4gRyrsWZUARXp02kTCAyWdzd+aJUknylvdglsWghzkNKfK76ocpCjBNu/dGBl5OI8B4K9v7JhsNVjppwg7RdshA9BSqgqibZkmaLRnO5V/J0bxGr0o0SV9wpqtCpX+j1Iag0/6VilkiSEOLtkpbLnPknMspWCmvrQha7Sgjx06gtF9PFPMXf52dLS3POCp4jkQIDAQABo10wWzBZBgNVHQEEUjBQgBAzAJMeZZJq+0Z1uoUutvYVoSowKDEmMCQGA1UEAxMdQmxhY2tiYXVkIEF1dGhlbnRpY2F0aW9uIDIwMjCCEMWEz36UVoidS72uH5B0Hq0wDQYJKoZIhvcNAQENBQADggEBACZF+RIZuBP4/hhmrwIsCA+ReOasAP2ft8mMya8JZGIa6g5tmcYGWQ/LEM9A3J4JsABxxchyPWETLKxJcBOjXIzVHi/azG98Fftsm36ogi7Zq2K4NYNHQn6k5KDGlpTICOcg+MqhJI2L9sW3m0o2Xc2s2LTBHnNmitxQqgPl7CohaWdL7AbDxGWy67nhSO5jsYEDMRwszTDNIKfHlbuoa0UPeKN7r/TTtyYH55RS8SVsNSEwrc8Og6G8Rb6UFoIyx+9zxN7NvRxX6NZhvwKvsB00hBD7CxvUI6kZ2hg2r7o3MtppAqFgWEq604OqRavZxrIEy1sdmQTKPA8Oj8EAiHI='
     },
     function(profile, done) {
-      return done('not implemented scott');
+      // Set the provider data and include tokens
+      var providerData = profile;
+
+      // Create the user OAuth profile
+      var providerUserProfile = {
+        firstName: profile['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'],
+        lastName: profile['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname'],
+        email: profile.email,
+        username: profile.email,
+        provider: 'blackbaud',
+        providerIdentifierField: 'nameidentifier',
+        providerData: providerData
+      };
+
+      // Save the user OAuth profile
+      users.saveOAuthUserProfile(null, providerUserProfile, done);
     })
   );
+
+
 };

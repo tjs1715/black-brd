@@ -53,17 +53,13 @@ module.exports = function(app) {
 	app.route('/auth/github/callback').get(users.oauthCallback('github'));
 
 	app.route('/login/callback').post(
-  passport.authenticate('saml2', { failureRedirect: '/', failureFlash: true }),
-  function(req, res) {
-		console.log('debug: saml2 authenticate');
-    res.redirect('/');
-  }
-);
+		passport.authenticate('wsfed-saml2', { failureRedirect: '/', failureFlash: true }),
+		  function(req, res) {
+		    res.redirect('/');
+		  }
+	);
 
 	app.route('/login').get(passport.authenticate('wsfed-saml2'));
-
-
-
 
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);

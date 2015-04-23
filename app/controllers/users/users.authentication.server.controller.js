@@ -101,7 +101,7 @@ exports.oauthCallback = function(strategy) {
  * Helper function to save or update a OAuth user profile
  */
 exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
-	if (!req.user) {
+	//if (!req.user) {
 		// Define a search query fields
 		var searchMainProviderIdentifierField = 'providerData.' + providerUserProfile.providerIdentifierField;
 		var searchAdditionalProviderIdentifierField = 'additionalProvidersData.' + providerUserProfile.provider + '.' + providerUserProfile.providerIdentifierField;
@@ -117,7 +117,8 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
 
 		// Define a search query to find existing user with current provider profile
 		var searchQuery = {
-			$or: [mainProviderSearchQuery, additionalProviderSearchQuery]
+			//$or: [mainProviderSearchQuery, additionalProviderSearchQuery]
+			username: providerUserProfile.username
 		};
 
 		User.findOne(searchQuery, function(err, user) {
@@ -132,10 +133,10 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
 							firstName: providerUserProfile.firstName,
 							lastName: providerUserProfile.lastName,
 							username: availableUsername,
-							displayName: providerUserProfile.displayName,
+							displayName: providerUserProfile.firstName + ' ' + providerUserProfile.lastName,
 							email: providerUserProfile.email,
-							provider: providerUserProfile.provider,
-							providerData: providerUserProfile.providerData
+							provider: providerUserProfile.provider//,
+							//providerData: providerUserProfile.providerData
 						});
 
 						// And save the user
@@ -148,7 +149,7 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
 				}
 			}
 		});
-	} else {
+	/* } else {
 		// User is already logged in, join the provider data to the existing user
 		var user = req.user;
 
@@ -168,7 +169,7 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
 		} else {
 			return done(new Error('User is already connected using this provider'), user);
 		}
-	}
+	} */
 };
 
 /**
