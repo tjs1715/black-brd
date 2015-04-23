@@ -3,6 +3,7 @@
 .sass-cache/
 npm-debug.log
 node_modules/
+!node_modules/passport-wsfed-saml2/lib/passport-wsfed-saml2/wsfederation.js
 public/lib
 app/tests/coverage/
 .bower-*/
