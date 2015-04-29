@@ -14,7 +14,8 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 			// Create new Question object
 			var question = new Questions ({
 				name: this.name,
-				answers: $scope.answers
+				answers: $scope.answers,
+				reason: this.reason
 			});
 
 			// Redirect after save
@@ -26,6 +27,7 @@ angular.module('questions').controller('QuestionsController', ['$scope', '$state
 				$scope.answerKey = '';
 				$scope.answerValue = '';
 				$scope.answerCorrect = false;
+				$scope.reason = '';
 
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;

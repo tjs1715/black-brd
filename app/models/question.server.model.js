@@ -23,6 +23,12 @@ var QuestionSchema = new Schema({
 			correct: Boolean
 		}
 	],
+	reason: {
+		type: String,
+		default: '',
+		required: 'Please enter a reason',
+		trim: true
+	},
 	created: {
 		type: Date,
 		default: Date.now
