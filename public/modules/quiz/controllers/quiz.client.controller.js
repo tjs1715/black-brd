@@ -46,31 +46,31 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 				}
 
 			}
+			if (answerKey !== 'Z') {
+				var quiz = new Quiz({currentQuestion: $scope.randomQuestion._id,correct: isCorrect,	answerKey: answerKey});
 
-			var quiz = new Quiz({currentQuestion: $scope.randomQuestion._id,correct: isCorrect,	answerKey: answerKey});
+				quiz.$update(function(response) {
+					$scope.success = true;
 
-			quiz.$update(function(response) {
-				$scope.success = true;
-
-				//Authentication.user = response;
-				if ($scope.questionCount < 1){
-					$scope.$apply();
-					$location.path('/dashboard');
-				}
-				else
-				{
-					$location.path('/answers/' + $scope.randomQuestion._id);
-				}
-			}, function(response) {
-				if ($scope.questionCount < 1){
-					$location.path('/dashboard');
-				}
-				else
-				{
-					$location.path('/answers/' + $scope.randomQuestion._id);
-				}
-			});
-
+					//Authentication.user = response;
+					if ($scope.questionCount < 1){
+						$scope.$apply();
+						$location.path('/dashboard');
+					}
+					else
+					{
+						$location.path('/answers/' + $scope.randomQuestion._id);
+					}
+				}, function(response) {
+					if ($scope.questionCount < 1){
+						$location.path('/dashboard');
+					}
+					else
+					{
+						$location.path('/answers/' + $scope.randomQuestion._id);
+					}
+				});
+			}
 		};
 	}
 ]);
