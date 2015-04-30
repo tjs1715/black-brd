@@ -8,13 +8,13 @@
   	<h2 data-ng-bind="question.name"></h2>
  			<table>
 				<tr ng-repeat="answer in question.answers">
-  			<td class="rdo-answer">
+  			<td style="width:10px" class="rdo-answer">
   				<span	ng-class="{green:answer.correct,red:!answer.correct }">
 						{{answer.key}}.
   				</span>
 				</td>
-				<td>
-					<span	ng-class="{green:answer.correct,red:!answer.correct }" class="rdo-answer">
+				<td class="rdo-answer">
+					<span	ng-class="{green:answer.correct,red:!answer.correct }">
 						{{answer.value}}
 					</span>
 				</td>
