@@ -25,10 +25,10 @@
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
-			<li ui-route="/signup" ng-class="{active: $uiRoute}">
+			<!--<li ui-route="/signup" ng-class="{active: $uiRoute}">
 				<a href="/#!/signup">Sign Up</a>
 			</li>
-			<li class="divider-vertical"></li>
+			<li class="divider-vertical"></li>-->
 			<li ui-route="/signin" ng-class="{active: $uiRoute}">
 				<a href="/#!/signin">Sign In</a>
 			</li>
@@ -39,7 +39,7 @@
 					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-					<li>
+					<!--<li>
 						<a href="/#!/settings/profile">Edit Profile</a>
 					</li>
 					<li>
@@ -49,6 +49,7 @@
 						<a href="/#!/settings/password">Change Password</a>
 					</li>
 					<li class="divider"></li>
+				-->
 					<li>
 						<a href="/auth/signout">Signout</a>
 					</li>
