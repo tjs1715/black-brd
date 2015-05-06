@@ -55,7 +55,7 @@ module.exports = function(app) {
 	app.route('/login/callback').post(
 		passport.authenticate('wsfed-saml2', { failureRedirect: '/', failureFlash: true }),
 		  function(req, res) {
-		    res.redirect('/');
+		    res.redirect('/#!/dashboard');
 		  }
 	);
 
