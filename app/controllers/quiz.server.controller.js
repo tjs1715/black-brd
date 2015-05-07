@@ -61,15 +61,16 @@ console.log(req.body);
   // add to list of answerwed questions
 //
   req.user.questions.push(req.body);
-  req.user.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
+  req.user.save();
+  //function(err) {
+    //if (err) {
+    //  return res.status(400).send({
+      //  message: errorHandler.getErrorMessage(err)
+    //  });
+    //} else {
       res.jsonp(user);
-    }
-  });
+  //  }
+  //});
 
 
 };

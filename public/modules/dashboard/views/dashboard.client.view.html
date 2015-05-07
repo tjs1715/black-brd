@@ -1,13 +1,13 @@
 <section data-ng-controller="DashboardController" data-ng-init="loadDashboard()">
 	<div class="row">
 		<h3>Secure coding practices presentation</h3>
-		<h5>Please download and review this presentation, then take the quiz below</h5>
+		<h4>Please download and review this presentation, then take the quiz below</h4>
 		<br>
 		<div>
 			<a class="btn btn-primary" href="/OWASP-2015.pptx">Download OWASP Slide Show</a>
 		</div>
 		<br>
-		<h3>Quiz Progress</h3>
+		<h3>Quiz progress</h3>
 		<h4>You have {{totalQuestionsObj.totalQuestions - totalAnsObj.totalAnswered}} of {{totalQuestionsObj.totalQuestions}} questions remaining.</h4>
 		<progressbar class="progress-striped active" max="100" value="(totalAnsObj.totalAnswered * 100) / totalQuestionsObj.totalQuestions" type="warning"></progressbar>
 		<p>
