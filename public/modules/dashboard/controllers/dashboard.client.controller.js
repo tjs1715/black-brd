@@ -38,6 +38,10 @@ angular.module('dashboard').controller('DashboardController', ['$scope', 'Authen
 
 				var arrLength = $scope.totalAnsObj.totalAnswered;
 
+				if (totalQuestionsObj.totalQuestions < totalAnsObj.totalAnswered) {
+					totalAnsObj.totalAnswered = totalQuestionsObj.totalQuestions;
+				}
+
 				for (var i = 0; i < arrLength; i++) {
 					if ($scope.authentication.user.questions[i].correct) {
 						totalCorrect++;
