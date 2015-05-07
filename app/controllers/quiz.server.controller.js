@@ -54,26 +54,37 @@ exports.list = function(req, res) {
 /**
  * Show the current Quiz
  */
-exports.answerQuestion = function(req, res) {
-  var question = req.question ;
-  var user = req.user;
-console.log(req.body);
-  // add to list of answerwed questions
-//
-  req.user.questions.push(req.body);
-  req.user.save();
-  //function(err) {
-    //if (err) {
-    //  return res.status(400).send({
-      //  message: errorHandler.getErrorMessage(err)
-    //  });
-    //} else {
-      res.jsonp(user);
-  //  }
-  //});
+ exports.answerQuestion = function(req, res) {
+   var question = req.question ;
+   var user = req.user;
+ //console.log(req.body);
+   // add to list of answerwed questions
+ //
+   //console.log(req.user.questions);
+   var previouslyAnswered = false;
+
+   for (var i = 0; i < req.user.questions.length; ++i){
+   	if (req.user.questions[i].currentQuestion === req.body.currentQuestion) {
+   		previouslyAnswered = true;
+   		break;
+   	}
+   }
+   if (!previouslyAnswered) {
+   	req.user.questions.push(req.body);
+   	req.user.save();
+   //function(err) {
+     //if (err) {
+     //  return res.status(400).send({
+       //  message: errorHandler.getErrorMessage(err)
+     //  });
+     //} else {
+ }
+ res.jsonp(user);
+   //  }
+   //});
 
 
-};
+ };
 
 exports.answeredQuestionById = function(req,res,next,id){
    Question.findById(id,function(err,question){
