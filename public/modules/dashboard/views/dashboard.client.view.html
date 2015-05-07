@@ -1,26 +1,28 @@
 <section data-ng-controller="DashboardController" data-ng-init="loadDashboard()">
 	<div class="row">
+		<h3>Secure coding practices presentation</h3>
+		<h5>Please download and review this presentation, then take the quiz below</h5>
+		<br>
+		<div>
+			<a class="btn btn-primary" href="/OWASP-2015.pptx">Download OWASP Slide Show</a>
+		</div>
+		<br>
 		<h3>Quiz Progress</h3>
 		<h4>You have {{totalQuestionsObj.totalQuestions - totalAnsObj.totalAnswered}} of {{totalQuestionsObj.totalQuestions}} questions remaining.</h4>
 		<progressbar class="progress-striped active" max="100" value="(totalAnsObj.totalAnswered * 100) / totalQuestionsObj.totalQuestions" type="warning"></progressbar>
 		<p>
 			<a class="btn btn-primary btn-lg" href="/#!/quiz" ng-show="quizButtonText.length > 0">{{quizButtonText}}</a>
 			<div ng-show="totalQuestionsObj.totalQuestions - totalAnsObj.totalAnswered < 1">
-				<h2>Congratulations!  You have finished the quiz and have learned many joyful things.</h2>
+				<h2>Congratulations!  You have finished the quiz.  Please keep secure coding practices in mind throughout the year.</h2>
 				<h4>Your final score is: {{correctAnswersObj.correctAnswers}} out of {{totalQuestionsObj.totalQuestions}} or {{Math.round((correctAnswersObj.correctAnswers / totalQuestionsObj.totalQuestions) * 100)}}%.</h4>
 			</div>
 		</p>
-		<br>
-		<br>
-		<div>
-			<a class="btn btn-primary" href="/OWASP-2015.pptx">Download OWASP Slide Show</a>
-		</div>
-		<br>
-		<br>
-		<div ng-show="totalAnsObj.totalAnswered > 0">
+
+		<!--<div ng-show="totalAnsObj.totalAnswered > 0">
 			<h5>Don't press reset unless you mean it...</h5>
 			<a class="btn btn-primary" href="/#!/quiz" ng-click="resetQuizProgress()">Reset Quiz</a>
 		</div>
+	-->
 	</div>
 </div>
 </section>

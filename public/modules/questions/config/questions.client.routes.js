@@ -4,6 +4,7 @@
 angular.module('questions').config(['$stateProvider',
 	function($stateProvider) {
 		// Questions state routing
+		/*
 		$stateProvider.
 		state('listQuestions', {
 			url: '/questions',
@@ -21,5 +22,6 @@ angular.module('questions').config(['$stateProvider',
 			url: '/questions/:questionId/edit',
 			templateUrl: 'modules/questions/views/edit-question.client.view.html'
 		});
+		*/
 	}
 ]);
