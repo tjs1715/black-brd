@@ -6,7 +6,7 @@
 
 
 angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '$location', '$http', 'Quiz', 'Questions',
-	function($scope, $stateParams, $location, $http, Quiz, Questions) {
+	function($scope, $stateParams, $location, $http, Quiz) {
 
 		$scope.questionCount = 0;
 		// Present question user has not answered
@@ -33,44 +33,56 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 			//
 			var isCorrect = false;
 			var answerKey = 'Z';
+
 			var rdoAnswers = document.getElementsByName('answers');
+			var checked = 0;
+
 			for (var i = 0, length = rdoAnswers.length; i < length; i++) {
-				if (rdoAnswers[i].checked === true)  {
-					var answerData = JSON.parse(rdoAnswers[i].value);
-					answerKey = answerData.key;
-					if (answerData.correct === true) {
+					if (rdoAnswers[i].checked === true)  {
+						checked = i;
+						break;
+					}
+			}
+
+			var ques = Quiz.get({questionId:$scope.randomQuestion._id});
+
+			ques.$promise.then(
+				function(res){
+					answerKey = ques.answers[checked].key;
+					if (ques.answers[checked].correct === true)
+					{
 						isCorrect = true;
 					}
 
-					break;
-				}
+					if (answerKey !== 'Z') {
+						var quiz = new Quiz({currentQuestion: $scope.randomQuestion._id,correct: isCorrect,	answerKey: answerKey});
 
-			}
-			if (answerKey !== 'Z') {
-				var quiz = new Quiz({currentQuestion: $scope.randomQuestion._id,correct: isCorrect,	answerKey: answerKey});
+						quiz.$update(function(response) {
+							$scope.success = true;
 
-				quiz.$update(function(response) {
-					$scope.success = true;
+							//Authentication.user = response;
+							if ($scope.questionCount < 1){
+								$scope.$apply();
+								$location.path('/dashboard');
+							}
+							else
+							{
+								$location.path('/answers/' + $scope.randomQuestion._id);
+							}
+						}, function(response) {
+							if ($scope.questionCount < 1){
+								$location.path('/dashboard');
+							}
+							else
+							{
+								$location.path('/answers/' + $scope.randomQuestion._id);
+							}
+						});
+					}
 
-					//Authentication.user = response;
-					if ($scope.questionCount < 1){
-						$scope.$apply();
-						$location.path('/dashboard');
-					}
-					else
-					{
-						$location.path('/answers/' + $scope.randomQuestion._id);
-					}
-				}, function(response) {
-					if ($scope.questionCount < 1){
-						$location.path('/dashboard');
-					}
-					else
-					{
-						$location.path('/answers/' + $scope.randomQuestion._id);
-					}
-				});
-			}
+				},
+				function(error){console.log(error);});
+
 		};
 	}
 ]);

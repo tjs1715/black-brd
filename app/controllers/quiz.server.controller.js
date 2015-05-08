@@ -34,6 +34,13 @@ exports.grabQuestion = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      for (var i = 0; i < questions.length; i++) {
+        for (var j = 0; j < questions[i].answers.length; j++) {
+          questions[i].answers[j].correct = false;
+        }
+
+        questions[i].reason = '';
+    }
       res.jsonp(questions);
     }
   });
