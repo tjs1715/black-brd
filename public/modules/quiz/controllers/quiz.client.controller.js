@@ -36,10 +36,12 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 
 			var rdoAnswers = document.getElementsByName('answers');
 			var checked = 0;
+			var anyChecked = false;
 
 			for (var i = 0, length = rdoAnswers.length; i < length; i++) {
 					if (rdoAnswers[i].checked === true)  {
 						checked = i;
+						anyChecked = true;
 						break;
 					}
 			}
@@ -54,7 +56,7 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 						isCorrect = true;
 					}
 
-					if (answerKey !== 'Z') {
+					if (anyChecked === true) {
 						var quiz = new Quiz({currentQuestion: $scope.randomQuestion._id,correct: isCorrect,	answerKey: answerKey});
 
 						quiz.$update(function(response) {
