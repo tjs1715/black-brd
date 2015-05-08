@@ -30,8 +30,20 @@ exports.create = function(req, res) {
  * Show the current Question
  */
 exports.read = function(req, res) {
-	console.log('qread');
-	res.jsonp(req.question);
+	//console.log('qread');
+
+	var answeredQuestions = [];
+	for (var i = 0; req.user.questions.length > i; i ++) {
+		answeredQuestions[i] = req.user.questions[i].currentQuestion;
+	}
+	var answeredQuestionId = answeredQuestions.indexOf(req.question._id.toString());
+
+	if (answeredQuestionId > -1) {
+		res.jsonp(req.question);
+	}
+	else {
+		res.jsonp();
+	}
 };
 
 /**
@@ -80,6 +92,13 @@ exports.list = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			for (var i = 0; i < questions.length; i++) {
+        for (var j = 0; j < questions[i].answers.length; j++) {
+          questions[i].answers[j].correct = false;
+        }
+
+        questions[i].reason = '';
+    	}
 			res.jsonp(questions);
 		}
 	});

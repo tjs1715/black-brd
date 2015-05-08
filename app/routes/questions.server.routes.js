@@ -7,12 +7,12 @@ module.exports = function(app) {
 	// Questions Routes
 	app.route('/questions')
 		.get(users.requiresLogin,questions.list)
-		.post(users.requiresLogin, questions.create);
+		//.post(users.requiresLogin, questions.create);
 
 	app.route('/questions/:questionId')
 		.get(users.requiresLogin, questions.hasAuthorization,questions.read)
-		.put(users.requiresLogin, questions.hasAuthorization, questions.update)
-		.delete(users.requiresLogin, questions.hasAuthorization, questions.delete);
+		//.put(users.requiresLogin, questions.hasAuthorization, questions.update)
+		//.delete(users.requiresLogin, questions.hasAuthorization, questions.delete);
 
 	// Finish by binding the Question middleware
 	app.param('questionId', questions.questionByID);
