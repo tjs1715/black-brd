@@ -11,7 +11,7 @@ angular.module('answers').controller('AnswersController', ['$scope','$stateParam
 
 			// map keys
 			var answeredQuestions = [];
-			for (var i = 0; user.questions.length > i; i ++) {
+			for (var i = 0; i < user.questions.length; i ++) {
 				answeredQuestions[i] = user.questions[i].currentQuestion;
 			}
 			var answeredQuestionId = answeredQuestions.indexOf($stateParams.questionId);
@@ -24,6 +24,13 @@ angular.module('answers').controller('AnswersController', ['$scope','$stateParam
 						function(res){
 							$scope.question = res;
 							$scope.question.answerKey = user.questions[answeredQuestionId].answerKey;
+
+							// get actual key
+							for (var i = 0; i < $scope.question.answers.length; i ++) {
+								if ($scope.question.answers[i].correct === true) {
+									$scope.correctAnswerKey = $scope.question.answers[i].key;
+								}
+							}
 					},
 					function(error){console.log(error);});
 			}
