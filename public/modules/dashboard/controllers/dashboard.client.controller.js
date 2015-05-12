@@ -38,8 +38,8 @@ angular.module('dashboard').controller('DashboardController', ['$scope', 'Authen
 
 				var arrLength = $scope.totalAnsObj.totalAnswered;
 
-				if (totalQuestionsObj.totalQuestions < totalAnsObj.totalAnswered) {
-					totalAnsObj.totalAnswered = totalQuestionsObj.totalQuestions;
+				if ($scope.totalQuestionsObj.totalQuestions < $scope.totalAnsObj.totalAnswered) {
+					$scope.totalAnsObj.totalAnswered = $scope.totalQuestionsObj.totalQuestions;
 				}
 
 				for (var i = 0; i < arrLength; i++) {
