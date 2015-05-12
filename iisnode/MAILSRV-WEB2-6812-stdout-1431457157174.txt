@@ -182,3 +182,52 @@ grab question
 [0mPOST /login/callback [36m302 [0m17.925 ms - 82[0m
 [0mGET / [32m200 [0m8.637 ms - -[0m
 [0mGET /questions [36m304 [0m20.568 ms - -[0m
+[0mGET /quiz/554d347d8bf7e6b009207e99 [32m200 [0m5.893 ms - 792[0m
+[0mPUT /quiz [32m200 [0m3.597 ms - -[0m
+[0mPUT /users [32m200 [0m4.590 ms - -[0m
+[0mGET /quiz/554d347d8bf7e6b009207e99 [32m200 [0m4.628 ms - 792[0m
+[0mGET / [32m200 [0m7.647 ms - -[0m
+[0mGET /login [36m302 [0m2.571 ms - 0[0m
+[0mPOST /login/callback [36m302 [0m18.473 ms - 82[0m
+[0mGET / [32m200 [0m8.678 ms - -[0m
+[0mGET /questions [32m200 [0m13.744 ms - -[0m
+grab question
+[0mGET /quiz [32m200 [0m15.936 ms - -[0m
+[0mGET /quiz/55415877c24f944c0c54a12d [32m200 [0m6.016 ms - 801[0m
+[0mPUT /quiz [32m200 [0m3.015 ms - 361[0m
+[0mPUT /users [32m200 [0m3.875 ms - 398[0m
+[0mGET /quiz/55415877c24f944c0c54a12d [36m304 [0m4.311 ms - -[0m
+grab question
+[0mGET /quiz [32m200 [0m14.570 ms - -[0m
+[0mGET /quiz/55415162c24f944c0c54a0e4 [32m200 [0m6.513 ms - 592[0m
+[0mPUT /quiz [32m200 [0m3.934 ms - 476[0m
+[0mPUT /users [32m200 [0m3.409 ms - 476[0m
+[0mGET /quiz/55415162c24f944c0c54a0e4 [36m304 [0m4.074 ms - -[0m
+[0mGET /questions [36m304 [0m15.841 ms - -[0m
+grab question
+[0mGET /quiz [32m200 [0m19.319 ms - -[0m
+[0mGET /quiz/55415631c24f944c0c54a108 [32m200 [0m5.226 ms - 572[0m
+[0mPUT /quiz [32m200 [0m3.815 ms - -[0m
+[0mPUT /users [32m200 [0m4.840 ms - -[0m
+[0mGET /quiz/55415631c24f944c0c54a108 [32m200 [0m5.267 ms - 572[0m
+[0mOPTIONS / [33m404 [0m8.539 ms - 5926[0m
+[0mOPTIONS / [33m404 [0m7.422 ms - 5926[0m
+[0mGET / [32m200 [0m8.048 ms - -[0m
+[0mGET /login [36m302 [0m2.889 ms - 0[0m
+[0mPOST /login/callback [36m302 [0m14.989 ms - 82[0m
+[0mGET / [32m200 [0m8.564 ms - -[0m
+[0mGET /questions [32m200 [0m13.925 ms - -[0m
+grab question
+[0mGET /quiz [32m200 [0m9.937 ms - -[0m
+[0mGET /quiz/554154ccc24f944c0c54a0f0 [32m200 [0m5.341 ms - 594[0m
+[0mPUT /quiz [32m200 [0m4.050 ms - -[0m
+[0mPUT /users [32m200 [0m3.860 ms - -[0m
+[0mGET /quiz/554154ccc24f944c0c54a0f0 [36m304 [0m4.468 ms - -[0m
+grab question
+[0mGET /quiz [32m200 [0m9.165 ms - -[0m
+[0mGET /quiz/55415566c24f944c0c54a0fa [32m200 [0m4.884 ms - 911[0m
+[0mPUT /quiz [32m200 [0m3.866 ms - -[0m
+[0mPUT /users [32m200 [0m3.632 ms - -[0m
+[0mGET /quiz/55415566c24f944c0c54a0fa [36m304 [0m5.190 ms - -[0m
+grab question
+[0mGET /quiz [32m200 [0m8.479 ms - -[0m
