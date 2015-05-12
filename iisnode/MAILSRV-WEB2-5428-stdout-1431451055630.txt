@@ -1,0 +1,21 @@
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+MEAN.JS application started on port \\.\pipe\04cf1986-4756-4aab-aca1-ce490cf65751
+[0mGET / [36m304 [0m61.719 ms - -[0m
+[0mGET /login [36m302 [0m8.614 ms - 0[0m
+[0mPOST /login/callback [36m302 [0m243.873 ms - 82[0m
+[0mGET / [32m200 [0m19.790 ms - -[0m
+[0mGET /questions [32m200 [0m8.533 ms - 2[0m
+[0mGET /auth/signout [36m302 [0m5.257 ms - 58[0m
+[0mGET / [32m200 [0m10.122 ms - -[0m
+[0mGET /login [36m302 [0m3.440 ms - 0[0m
+[0mPOST /login/callback [36m302 [0m22.102 ms - 82[0m
+[0mGET / [32m200 [0m8.902 ms - -[0m
+[0mGET /questions [36m304 [0m6.018 ms - -[0m
+[0mGET /auth/signout [36m302 [0m8.368 ms - 58[0m
+[0mGET / [32m200 [0m7.003 ms - -[0m
+[0mGET / [32m200 [0m7.300 ms - -[0m
+[0mGET /login [36m302 [0m4.079 ms - 0[0m
+[0mPOST /login/callback [36m302 [0m28.580 ms - 82[0m
+[0mGET / [32m200 [0m9.898 ms - -[0m
+[0mGET /questions [36m304 [0m5.277 ms - -[0m

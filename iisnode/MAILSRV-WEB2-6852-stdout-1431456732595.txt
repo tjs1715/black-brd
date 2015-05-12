@@ -1,0 +1,11 @@
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+MEAN.JS application started on port \\.\pipe\d9673f8f-3fdf-4006-bbb7-f137893af4f8
+[0mGET /auth/signout [36m302 [0m39.243 ms - 58[0m
+[0mGET / [32m200 [0m50.222 ms - -[0m
+[0mGET /login [36m302 [0m4.999 ms - 0[0m
+[0mPOST /login/callback [36m302 [0m91.460 ms - 82[0m
+[0mGET / [32m200 [0m15.194 ms - -[0m
+[0mGET /questions [36m304 [0m30.765 ms - -[0m
+[0mGET / [36m304 [0m11.930 ms - -[0m
+[0mGET /questions [36m304 [0m23.405 ms - -[0m

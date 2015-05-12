@@ -1,0 +1,3 @@
+NODE_ENV is not defined! Using default development environment
+js-bson: Failed to load c++ bson extension, using pure JS version
+js-bson: Failed to load c++ bson extension, using pure JS version

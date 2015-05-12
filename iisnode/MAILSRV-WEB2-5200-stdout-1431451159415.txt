@@ -1,0 +1,11 @@
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+MEAN.JS application started on port \\.\pipe\ea84f01f-692d-4c8a-97d2-5c397930501f
+[0mGET /login/callback/wsfederation?wa=wsignoutcleanup1.0 [33m404 [0m82.414 ms - -[0m
+[0mGET / [36m304 [0m16.106 ms - -[0m
+[0mGET /auth/signout [36m302 [0m7.374 ms - 58[0m
+[0mGET / [32m200 [0m10.031 ms - -[0m
+[0mGET /login [36m302 [0m4.368 ms - 0[0m
+[0mPOST /login/callback [36m302 [0m94.805 ms - 82[0m
+[0mGET / [32m200 [0m11.559 ms - -[0m
+[0mGET /questions [36m304 [0m8.900 ms - -[0m

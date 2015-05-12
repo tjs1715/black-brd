@@ -13,8 +13,8 @@ module.exports = function(){
     passport.use(new wsfedsaml2(
     {
       path: '/login/callback',
-      realm: 'https://ncservicetest.blackbaud.com/login/callback',
-      wReply: 'https://ncservicetest.blackbaud.com/login/callback',
+      realm: 'http://mailsrv-web2.pdnt.blackbaud.com/login/callback',
+      wReply: 'http://mailsrv-web2.pdnt.blackbaud.com/login/callback',
       homeRealm: '', // optionally specify an identity provider to avoid showing the idp selector
       identityProviderUrl: 'http://signin.blackbaud.com/wsfederation/action',
       identityMetadata: 'http://signin.blackbaud.com/wsfederation/metadata',
