@@ -9,7 +9,40 @@ var mongoose = require('mongoose'),
   _ = require('lodash');
 
 exports.read = function(req, res) {
+  var answeredQuestions = [];
+
+  for (var i = 0; req.user.questions.length > i; i ++) {
+    answeredQuestions[i] = req.user.questions[i].currentQuestion;
+  }
+  var answeredQuestionId = answeredQuestions.indexOf(req.question._id.toString());
+
+  if (answeredQuestionId > -1) {
     res.json(req.question);
+  }
+  else {
+    for (var i = 0; i < req.question.answers.length; i++) {
+      req.question.answers[i].correct = false;
+    }
+    req.question.reason = '';
+    res.json(req.question);
+  }
+  
+
+
+
+
+    //var answeredQuestions = [];
+  	//for (var i = 0; req.user.questions.length > i; i ++) {
+  	//	answeredQuestions[i] = req.user.questions[i].currentQuestion;
+  //	}
+  	//var answeredQuestionId = answeredQuestions.indexOf(req.question._id.toString());
+
+  //	if (answeredQuestionId > -1) {
+  	//	res.jsonp(req.question);
+  //	}
+  //	else {
+  	//	res.jsonp();
+  //	}
 };
 
 

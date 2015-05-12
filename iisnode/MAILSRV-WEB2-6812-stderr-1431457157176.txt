@@ -1,3 +1,14 @@
 NODE_ENV is not defined! Using default development environment
 js-bson: Failed to load c++ bson extension, using pure JS version
 js-bson: Failed to load c++ bson extension, using pure JS version
+Error: Failed to load Question 554d347d8bf7e6b009207e9c
+    at Promise.<anonymous> (C:\black-brd\app\controllers\questions.server.controller.js:113:31)
+    at Promise.<anonymous> (C:\black-brd\node_modules\mongoose\node_modules\mpromise\lib\promise.js:177:8)
+    at Promise.emit (events.js:107:17)
+    at Promise.emit (C:\black-brd\node_modules\mongoose\node_modules\mpromise\lib\promise.js:84:38)
+    at Promise.fulfill (C:\black-brd\node_modules\mongoose\node_modules\mpromise\lib\promise.js:97:20)
+    at Promise.resolve (C:\black-brd\node_modules\mongoose\lib\promise.js:114:23)
+    at Promise.<anonymous> (C:\black-brd\node_modules\mongoose\node_modules\mpromise\lib\promise.js:177:8)
+    at Promise.emit (events.js:107:17)
+    at Promise.emit (C:\black-brd\node_modules\mongoose\node_modules\mpromise\lib\promise.js:84:38)
+    at Promise.fulfill (C:\black-brd\node_modules\mongoose\node_modules\mpromise\lib\promise.js:97:20)
