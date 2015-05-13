@@ -46,9 +46,9 @@ angular.module('quiz').controller('QuizController', ['$scope', '$stateParams', '
 					}
 			}
 
-			var quiz = new Quiz({currentQuestion: $scope.randomQuestion._id,correct: isCorrect,	answerKey: answerKey});
+			//var quiz = new Quiz({currentQuestion: $scope.randomQuestion._id,correct: isCorrect,	answerKey: answerKey});
 
-			quiz.$update();
+			//quiz.$update();
 
 
 			var ques = Quiz.get({questionId:$scope.randomQuestion._id});

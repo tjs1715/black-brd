@@ -10,23 +10,24 @@ var mongoose = require('mongoose'),
 
 exports.read = function(req, res) {
   res.setHeader('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-  var answeredQuestions = [];
+  //var answeredQuestions = [];
 
-  for (var i = 0; req.user.questions.length > i; i ++) {
-    answeredQuestions[i] = req.user.questions[i].currentQuestion;
-  }
-  var answeredQuestionId = answeredQuestions.indexOf(req.question._id.toString());
+  //for (var i = 0; req.user.questions.length > i; i ++) {
+    //answeredQuestions[i] = req.user.questions[i].currentQuestion;
+//  }
+  //var answeredQuestionId = answeredQuestions.indexOf(req.question._id.toString());
 
-  if (answeredQuestionId > -1) {
+  //if (answeredQuestionId > -1) {
+    //res.json(req.question);
+  //}
+  //else {
+  //  for (var i = 0; i < req.question.answers.length; i++) {
+    //  req.question.answers[i].correct = false;
+  //  }
+  //  req.question.reason = '';
+    //console.log(req.params.questionId);
     res.json(req.question);
-  }
-  else {
-    for (var i = 0; i < req.question.answers.length; i++) {
-      req.question.answers[i].correct = false;
-    }
-    req.question.reason = '';
-    res.json(req.question);
-  }
+  //}
 
 
 
@@ -69,6 +70,7 @@ exports.grabQuestion = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      //console.log($stateParams.questionId);
       for (var i = 0; i < questions.length; i++) {
         for (var j = 0; j < questions[i].answers.length; j++) {
           questions[i].answers[j].correct = false;
@@ -76,6 +78,7 @@ exports.grabQuestion = function(req, res) {
 
         questions[i].reason = '';
     }
+
       res.jsonp(questions);
     }
   });
@@ -98,19 +101,19 @@ exports.list = function(req, res) {
  * Show the current Quiz
  */
  exports.answerQuestion = function(req, res) {
-   var question = req.question ;
+   var question = req.question;
    var user = req.user;
  //console.log(req.body);
    // add to list of answerwed questions
  //
    //console.log(req.user.questions);
    var previouslyAnswered = false;
-   var previousAnswer = '';
-   var i;
-   for (i = 0; i < req.user.questions.length; ++i){
+   //var previousAnswer = '';
+   //var i;
+   for (var i = 0; i < req.user.questions.length; ++i){
    	if (req.user.questions[i].currentQuestion === req.body.currentQuestion) {
    		previouslyAnswered = true;
-      previousAnswer = req.user.questions[i].answerKey;
+      //previousAnswer = req.user.questions[i].answerKey;
    		break;
    	}
    }
@@ -124,18 +127,17 @@ exports.list = function(req, res) {
      //  });
      //} else {
  }
- else {
-   if (previousAnswer === 'Z') {
+ //else {
+   //if (previousAnswer === 'Z') {
     // console.log(req.user.questions[i]);
-     req.user.questions.splice(i);
-     req.user.save();
+     //req.user.questions.splice(i);
+     //req.user.save();
 
-     req.user.questions[i] = req.body;
-     req.user.save();
+     //req.user.questions[i] = req.body;
+     //req.user.save();
 
      //console.log(req.user.questions[i]);
-   }
- }
+
  res.jsonp(user);
    //  }
    //});
