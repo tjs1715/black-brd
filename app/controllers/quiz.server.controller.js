@@ -9,6 +9,7 @@ var mongoose = require('mongoose'),
   _ = require('lodash');
 
 exports.read = function(req, res) {
+  res.setHeader('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   var answeredQuestions = [];
 
   for (var i = 0; req.user.questions.length > i; i ++) {
@@ -26,7 +27,7 @@ exports.read = function(req, res) {
     req.question.reason = '';
     res.json(req.question);
   }
-  
+
 
 
 
@@ -53,6 +54,7 @@ exports.read = function(req, res) {
 exports.grabQuestion = function(req, res) {
   // pull out array of ids
   //
+  res.setHeader('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   console.log('grab question');
   var arrLength = req.user.questions.length;
   var questionIds = [];
@@ -80,7 +82,8 @@ exports.grabQuestion = function(req, res) {
 };
 
 exports.list = function(req, res) {
-	Question.find().sort('-created').populate('user', 'displayName').exec(function(err, questions) {
+  res.setHeader('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  Question.find().sort('-created').populate('user', 'displayName').exec(function(err, questions) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -102,10 +105,12 @@ exports.list = function(req, res) {
  //
    //console.log(req.user.questions);
    var previouslyAnswered = false;
-
-   for (var i = 0; i < req.user.questions.length; ++i){
+   var previousAnswer = '';
+   var i;
+   for (i = 0; i < req.user.questions.length; ++i){
    	if (req.user.questions[i].currentQuestion === req.body.currentQuestion) {
    		previouslyAnswered = true;
+      previousAnswer = req.user.questions[i].answerKey;
    		break;
    	}
    }
@@ -118,6 +123,18 @@ exports.list = function(req, res) {
        //  message: errorHandler.getErrorMessage(err)
      //  });
      //} else {
+ }
+ else {
+   if (previousAnswer === 'Z') {
+    // console.log(req.user.questions[i]);
+     req.user.questions.splice(i);
+     req.user.save();
+
+     req.user.questions[i] = req.body;
+     req.user.save();
+
+     //console.log(req.user.questions[i]);
+   }
  }
  res.jsonp(user);
    //  }

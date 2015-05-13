@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
  * Create a Question
  */
 exports.create = function(req, res) {
+	res.setHeader('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 	var question = new Question(req.body);
 	question.user = req.user;
 
@@ -31,7 +32,7 @@ exports.create = function(req, res) {
  */
 exports.read = function(req, res) {
 	//console.log('qread');
-
+	res.setHeader('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 	var answeredQuestions = [];
 	for (var i = 0; req.user.questions.length > i; i ++) {
 		answeredQuestions[i] = req.user.questions[i].currentQuestion;
@@ -50,6 +51,7 @@ exports.read = function(req, res) {
  * Update a Question
  */
 exports.update = function(req, res) {
+	res.setHeader('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 	var question = req.question ;
 
 	question = _.extend(question , req.body);
@@ -69,6 +71,7 @@ exports.update = function(req, res) {
  * Delete an Question
  */
 exports.delete = function(req, res) {
+	res.setHeader('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 	var question = req.question ;
 
 	question.remove(function(err) {
@@ -86,6 +89,7 @@ exports.delete = function(req, res) {
  * List of Questions
  */
 exports.list = function(req, res) {
+	res.setHeader('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 	Question.find().sort('-created').populate('user', 'displayName').exec(function(err, questions) {
 		if (err) {
 			return res.status(400).send({
@@ -108,6 +112,7 @@ exports.list = function(req, res) {
  * Question middleware
  */
 exports.questionByID = function(req, res, next, id) {
+	res.setHeader('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 	Question.findById(id).populate('user', 'displayName').exec(function(err, question) {
 		if (err) return next(err);
 		if (! question) return next(new Error('Failed to load Question ' + id));
